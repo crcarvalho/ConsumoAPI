@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/inputNumeroPokemon"
         android:layout_width="0dp"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="9dp"
         android:layout_marginRight="8dp"
@@ -26,10 +26,11 @@
         android:id="@+id/btSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/botao_search"
         app:layout_constraintEnd_toEndOf="@+id/inputNumeroPokemon"
         app:layout_constraintStart_toStartOf="@+id/inputNumeroPokemon"
-        tools:layout_editor_absoluteY="72dp" />
+        app:layout_constraintTop_toBottomOf="@+id/inputNumeroPokemon" />
 
     <ImageView
         android:id="@+id/ivPokemon"
