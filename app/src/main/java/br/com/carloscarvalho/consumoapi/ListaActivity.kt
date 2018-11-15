@@ -9,7 +9,7 @@ import java.io.LineNumberReader
 class ListaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState) 
         setContentView(R.layout.activity_lista)
 
         //dentro do listOF vai o retorno JSON de um array de pokemons ou podemos inserir pokemons na lista
