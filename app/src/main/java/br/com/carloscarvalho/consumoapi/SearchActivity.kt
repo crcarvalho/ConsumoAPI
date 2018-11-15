@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import br.com.carloscarvalho.consumoapi.api.PokemonAPI
 import br.com.carloscarvalho.consumoapi.model.Pokemon
+import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_search.*
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,9 +29,12 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun search(){
+
+        val okhttp = OkHttpClient.Builder().addNetworkInterceptor(StethoInterceptor()).build()
+
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://pokeapi.co")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create()).client(okhttp)
                 .build()
 
 
@@ -52,11 +58,18 @@ class SearchActivity : AppCompatActivity() {
                     val pokemon = response.body()
 
                     tvPokemon.text = pokemon?.name
+
+                    Picasso.get()
+                            .load(pokemon?.sprites?.frontDefault)
+                            .placeholder(R.drawable.searching)
+                            .error(R.drawable.notfound)
+                            .into(ivPokemon)
                 }else{
-                    Toast.makeText(this@SearchActivity,
-                            "Deu ruim",
-                            Toast.LENGTH_LONG)
-                            .show()
+                    tvPokemon.text = getString(R.string.not_found)
+
+                    Picasso.get()
+                            .load(R.drawable.notfound)
+                            .into(ivPokemon)
                 }
             }
         })
