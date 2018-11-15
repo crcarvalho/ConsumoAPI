@@ -17,5 +17,10 @@ class MainActivity : AppCompatActivity() {
             
         }
 
+        btLista.setOnClickListener{
+            startActivity(Intent( this, ListaActivity::class.java))
+
+        }
+
     }
 }
